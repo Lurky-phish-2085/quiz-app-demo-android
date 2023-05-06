@@ -1,10 +1,12 @@
 package xyz.lurkyphish2085.quizappdemo
 
+import android.content.ClipData.Item
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import xyz.lurkyphish2085.quizappdemo.data.Quiz
 import xyz.lurkyphish2085.quizappdemo.data.QuizItem
 import xyz.lurkyphish2085.quizappdemo.databinding.ActivityMainBinding
 
@@ -23,14 +25,9 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         setupActionBarWithNavController(navController)
-
-        test()
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
-    }
-
-    fun test() {
     }
 }
