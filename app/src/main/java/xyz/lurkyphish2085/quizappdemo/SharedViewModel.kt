@@ -22,6 +22,18 @@ class SharedViewModel : ViewModel() {
     val quizHasNext: LiveData<Boolean> = _quizHasNext
     val quizHasPrev: LiveData<Boolean> = _quizHasPrev
 
+    val score get() = "${_quiz.score}/${_quiz.size}"
+    val scorePercentage get() = (_quiz.score / _quiz.size) * 100
+    val resultFeedback get() =
+        when (scorePercentage) {
+            0 -> "BRUH!!! TRY AGAIN"
+            in 70 .. 80 -> "YOU'RE DOING GOOD"
+            in 90..95 -> "GREAT!!!"
+            99 -> "THAT WAS CLOSE!!!"
+            100 -> "PERFECT!!!!!"
+            else -> "HAHAHAHAHAHAHA"
+        }
+
     fun nextQuizItem() {
         _quiz.next()
         refreshData()

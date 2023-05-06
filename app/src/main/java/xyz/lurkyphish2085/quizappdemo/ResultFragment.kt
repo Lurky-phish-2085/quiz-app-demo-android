@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavHost
 import androidx.navigation.fragment.NavHostFragment
@@ -14,6 +15,8 @@ class ResultFragment : Fragment() {
 
     private var _binding: FragmentResultBinding? = null
     private var _navController: NavController? = null
+
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     private val navController get() = _navController!!
     private val binding get() = _binding!!
