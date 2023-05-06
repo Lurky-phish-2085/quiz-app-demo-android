@@ -8,18 +8,18 @@ class Quiz(private vararg val _items: QuizItem) {
     val currentQuizItem get() = _items[_currentQuizIndex]
     val currentQuizCount get() = _currentQuizIndex + 1
     val size get() = _items.size
-    val hasNext get() = _currentQuizIndex >= (_items.size - 1)
-    val hasPrev get() = _currentQuizIndex <= 0
+    val hasNext get() = _currentQuizIndex < (_items.size - 1)
+    val hasPrev get() = _currentQuizIndex > 0
 
     val score get() = computeScore()
 
     fun next() {
-        if (hasNext) return
+        if (!hasNext) return
         _currentQuizIndex++
     }
 
     fun prev() {
-        if (hasPrev) return
+        if (!hasPrev) return
         _currentQuizIndex--
     }
 

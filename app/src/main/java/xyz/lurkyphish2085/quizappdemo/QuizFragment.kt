@@ -6,10 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import xyz.lurkyphish2085.quizappdemo.databinding.FragmentQuizBinding
 
@@ -33,10 +36,23 @@ class QuizFragment : Fragment() {
         bindViews()
         setupButtons()
 
+        binding.quizChoicesRadiogrp.setOnCheckedChangeListener { radioGroup, id ->
+            run {
+                val checkedButton = radioGroup.findViewById<RadioButton>(id)
+                sharedViewModel.answerQuiz(checkedButton.text.toString())
+            }
+        }
+
         return binding.root
     }
 
     private fun bindViews() {
+        sharedViewModel.progressValue.observe(viewLifecycleOwner) {
+            ObjectAnimator.ofInt(binding.progressBar, "progress", it)
+                .setDuration(300)
+                .start()
+        }
+
         sharedViewModel.quizCountText.observe(viewLifecycleOwner) {
             binding.quizCountTv.text = it.toString()
         }
@@ -56,15 +72,20 @@ class QuizFragment : Fragment() {
             }
         }
 
-        sharedViewModel.progressValue.observe(viewLifecycleOwner) {
-            ObjectAnimator.ofInt(binding.progressBar, "progress", it)
-                .setDuration(300)
-                .start()
+        sharedViewModel.quizHasNext.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.nextQuizBtn.text = "NEXT"
+            } else {
+                binding.nextQuizBtn.text = "FINISH"
+            }
+        }
+
+        sharedViewModel.quizHasPrev.observe(viewLifecycleOwner) {
+            binding.prevQuizBtn.isEnabled = it
         }
     }
 
     private fun setupButtons() {
-        // TODO("SETUP NEXT AND PREV BUTTON")
         binding.nextQuizBtn.setOnClickListener {
             sharedViewModel.nextQuizItem()
         }

@@ -12,15 +12,15 @@ class SharedViewModel : ViewModel() {
     private var _quizCountText = MutableLiveData("Quiz ${_quiz.currentQuizCount} of ${_quiz.size}")
     private var _quizQuestion = MutableLiveData(_quiz.currentQuizItem.question)
     private var _quizChoices = MutableLiveData(_quiz.currentQuizItem.choices)
-
-    private var _progressMaxValue = _quiz.size
+    private var _quizHasNext = MutableLiveData(_quiz.hasNext)
+    private var _quizHasPrev = MutableLiveData(_quiz.hasPrev)
 
     val progressValue: LiveData<Int> = _progressValue
     val quizCountText: LiveData<String> = _quizCountText
     val quizQuestion: LiveData<String> = _quizQuestion
     val quizChoices: LiveData<Array<String>> = _quizChoices
-
-    val progressMaxValue = _progressMaxValue
+    val quizHasNext: LiveData<Boolean> = _quizHasNext
+    val quizHasPrev: LiveData<Boolean> = _quizHasPrev
 
     fun nextQuizItem() {
         _quiz.next()
@@ -32,11 +32,18 @@ class SharedViewModel : ViewModel() {
         refreshData()
     }
 
+    fun answerQuiz(answer: String) {
+        _quiz.inputAnswer(answer)
+    }
+
+    // I should have made my Quiz class properties as MutableLiveData
     private fun refreshData() {
-        // TODO(ADD MORE Data Bindings)
         _progressValue.value = (_quiz.currentQuizCount * (100/_quiz.size)).coerceAtMost(100)
         _quizCountText.value = "Quiz ${_quiz.currentQuizCount} of ${_quiz.size}"
         _quizQuestion.value = _quiz.currentQuizItem.question
         _quizChoices.value = _quiz.currentQuizItem.choices
+
+        _quizHasNext.value = _quiz.hasNext
+        _quizHasPrev.value = _quiz.hasPrev
     }
 }
