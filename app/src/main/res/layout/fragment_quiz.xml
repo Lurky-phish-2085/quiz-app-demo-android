@@ -9,9 +9,24 @@
     tools:context=".QuizFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <androidx.cardview.widget.CardView
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@android:style/Widget.Material.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        tools:progress="50"/>
+
+    <TextView
+        android:id="@+id/quiz_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="QUIZ 1 / 10"
+        android:textStyle="bold"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
         app:cardElevation="10dp"
         app:cardCornerRadius="20dp"
         android:layout_margin="10dp"

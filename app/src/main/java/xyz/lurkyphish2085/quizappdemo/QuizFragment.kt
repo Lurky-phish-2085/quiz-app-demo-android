@@ -26,6 +26,7 @@ class QuizFragment : Fragment() {
         _binding = FragmentQuizBinding.inflate(layoutInflater, container, false)
         _navController = NavHostFragment.findNavController(this)
 
+
         setupButtons()
 
 
