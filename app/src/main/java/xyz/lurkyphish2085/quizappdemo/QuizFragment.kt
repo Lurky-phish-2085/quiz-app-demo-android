@@ -57,7 +57,6 @@ class QuizFragment : Fragment() {
         }
 
         sharedViewModel.progressValue.observe(viewLifecycleOwner) {
-//            binding.progressBar.progress = it
             ObjectAnimator.ofInt(binding.progressBar, "progress", it)
                 .setDuration(300)
                 .start()
