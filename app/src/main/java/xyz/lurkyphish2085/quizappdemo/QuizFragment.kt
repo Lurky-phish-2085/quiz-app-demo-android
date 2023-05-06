@@ -87,6 +87,10 @@ class QuizFragment : Fragment() {
 
     private fun setupButtons() {
         binding.nextQuizBtn.setOnClickListener {
+            if ((it as Button).text.equals("FINISH")) {
+                navController.navigate(R.id.action_quizFragment_to_resultFragment)
+            }
+
             sharedViewModel.nextQuizItem()
         }
 

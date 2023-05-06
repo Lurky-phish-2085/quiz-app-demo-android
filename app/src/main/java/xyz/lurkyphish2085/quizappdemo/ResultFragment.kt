@@ -31,6 +31,9 @@ class ResultFragment : Fragment() {
 
         setupButtons()
 
+        binding.scoreTv.text = sharedViewModel.score
+        binding.resultFeedbackTv.text = sharedViewModel.resultFeedback
+
         return binding.root
     }
 

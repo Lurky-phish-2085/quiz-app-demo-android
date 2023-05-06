@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import xyz.lurkyphish2085.quizappdemo.databinding.FragmentMainMenuBinding
@@ -14,6 +15,8 @@ class MainMenuFragment : Fragment() {
 
     private var _binding: FragmentMainMenuBinding? = null
     private var _navController: NavController? = null
+
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     private val navController get() = _navController!!
     private val binding get() = _binding!!
