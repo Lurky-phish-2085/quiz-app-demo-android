@@ -14,10 +14,11 @@
         style="@android:style/Widget.Material.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:progress="50"/>
+        tools:progress="50"
+        android:max="100"/>
 
     <TextView
-        android:id="@+id/quiz_count"
+        android:id="@+id/quiz_count_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -43,7 +44,7 @@
             <TextView
                 android:id="@+id/question_tv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:gravity="center_horizontal"
                 tools:text="HERE'S A VERY LONG QUESTION? WHO DID WHAT IN THE TIME WHEN THE WHEN THE?"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -52,6 +53,7 @@
             <RadioGroup
                 android:id="@+id/quiz_choices_radiogrp"
                 android:orientation="vertical"
+                android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
